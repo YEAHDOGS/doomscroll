@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doomscroll — Put a light on it</title>
+<meta name="description" content="Doomscroll watches the scroll. A floating bubble tracks your time in the feeds, remembers what you watched, and hands you the weekly reckoning. Android & iOS.">
+<style>
+  :root { --bg:#07080c; --ink:#f2f3f5; --dim:#9aa3ad; --amber:#ffb02e; --violet:#7a5cff; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-snap-type:y mandatory; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; overflow-x:hidden; }
+  .panel { min-height:100svh; scroll-snap-align:start; position:relative; display:flex; flex-direction:column; justify-content:center; padding:8svh 7vw; overflow:hidden; }
+  .giant { font-size:clamp(3rem,13vw,9.5rem); font-weight:900; letter-spacing:-0.03em; line-height:0.95; text-transform:uppercase; }
+  .big { font-size:clamp(2rem,8vw,4.6rem); font-weight:800; letter-spacing:-0.02em; line-height:1.02; }
+  .line { font-size:clamp(1.05rem,3.4vw,1.5rem); color:var(--dim); margin-top:1.1rem; max-width:34ch; line-height:1.35; }
+  .amber { color:var(--amber); } .violet { color:var(--violet); }
+  .glow1 { background:radial-gradient(60% 50% at 75% 20%, rgba(255,176,46,.16), transparent 65%), radial-gradient(50% 45% at 15% 85%, rgba(122,92,255,.15), transparent 65%); }
+  .glow2 { background:radial-gradient(55% 50% at 20% 25%, rgba(122,92,255,.16), transparent 65%); }
+  .glow3 { background:radial-gradient(55% 50% at 80% 75%, rgba(255,176,46,.13), transparent 65%); }
+  .bubble { position:absolute; right:6vw; top:16svh; width:118px; height:118px; border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, #2b2f3a, #12141c 70%); border:1px solid rgba(255,255,255,.14);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:0 18px 50px rgba(0,0,0,.55); animation:bob 5s ease-in-out infinite; }
+  .bubble b { font-size:1.45rem; } .bubble span { font-size:.62rem; letter-spacing:.14em; color:var(--dim); text-transform:uppercase; }
+  @keyframes bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-14px); } }
+  .apps { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.6rem; }
+  .apps span { border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:.42rem .95rem; font-size:.95rem; color:var(--ink); background:rgba(255,255,255,.04); }
+  .searchbar { margin-top:1.8rem; max-width:520px; border:1px solid rgba(255,255,255,.16); border-radius:14px; padding:1rem 1.2rem; background:rgba(255,255,255,.04); color:var(--dim); font-size:1.05rem; }
+  .searchbar b { color:var(--ink); font-weight:600; }
+  .stats { display:flex; gap:2.6rem; margin-top:2rem; flex-wrap:wrap; }
+  .stats div b { display:block; font-size:clamp(1.9rem,6vw,3.2rem); font-weight:900; }
+  .stats div span { color:var(--dim); font-size:.85rem; letter-spacing:.1em; text-transform:uppercase; }
+  .foot { align-items:flex-start; justify-content:flex-end; }
+  .badge { display:block; width:fit-content; margin-top:2.2rem; }
+  .badge img { display:block; width:min(320px,70vw); height:auto; }
+  .plat { display:flex; gap:.55rem; margin-top:1.6rem; }
+  .plat span { background:var(--ink); color:#0a0b0f; font-weight:700; border-radius:999px; padding:.5rem 1.1rem; font-size:.95rem; }
+  .cue { position:absolute; right:6vw; bottom:4svh; color:var(--dim); font-size:1.4rem; animation:bob 2.6s ease-in-out infinite; }
+  @media (max-width:600px){ .bubble{ width:92px; height:92px; top:10svh; } .bubble b{ font-size:1.15rem; } }
+</style>
+</head>
+<body>
+
+<section class="panel glow1">
+  <div class="bubble"><b>2:47</b><span>today</span></div>
+  <h1 class="giant">Doom<br>scroll</h1>
+  <p class="line">See the scroll.<br>Know where the hours went.</p>
+  <div class="cue">↓</div>
+</section>
+
+<section class="panel glow2">
+  <h2 class="big">A bubble that<br><span class="violet">watches back.</span></h2>
+  <p class="line">It floats over the feed and counts only while you're actually scrolling. Not open. Scrolling.</p>
+  <div class="apps"><span>Instagram</span><span>TikTok</span><span>YouTube</span><span>X</span><span>Facebook</span></div>
+</section>
+
+<section class="panel">
+  <h2 class="big">Every reel,<br><span class="amber">remembered.</span></h2>
+  <p class="line">What you watched, summed up in a line. Your whole scroll history, searchable.</p>
+  <div class="searchbar">Search: <b>"that video about sourdough"</b></div>
+</section>
+
+<section class="panel glow3">
+  <h2 class="big">The weekly<br>reckoning.</h2>
+  <div class="stats">
+    <div><b>19 hrs</b><span>in the feed</span></div>
+    <div><b>412</b><span>reels watched</span></div>
+    <div><b>−22%</b><span>vs last week</span></div>
+  </div>
+  <p class="line">No guilt trip. Just the numbers, once a week, in the light.</p>
+</section>
+
+<section class="panel foot glow1">
+  <h2 class="giant">Put a<br>light on it.</h2>
+  <p class="line">Doomscroll less by seeing it clearly.<br>In the works.</p>
+  <div class="plat"><span>Android</span><span>iOS</span></div>
+  <a class="badge" href="https://wearedogs.net"><img src="made-by-dogs.webp" alt="This product was made by DOGS"></a>
+</section>
+
+</body>
+</html>
